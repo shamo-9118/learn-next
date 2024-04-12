@@ -1,5 +1,3 @@
-import { table } from "console"
-import { todo } from "node:test";
 type Todo = {
   completed: boolean;
   id: number;
