@@ -1,4 +1,3 @@
-import useFetchDataJsonPlaceholder from "@/hooks/useFetchDataJsonPlaceholder";
 import React, { useState, useEffect } from 'react';
 
 import type { FunctionComponent } from 'react';
