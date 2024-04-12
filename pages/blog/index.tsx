@@ -2,7 +2,7 @@ import {  Layout } from '@/components/Layout'
 
 function Blog() {
   return (
-    <Layout></Layout>
+    <Layout>blog</Layout>
   )
 }
 
