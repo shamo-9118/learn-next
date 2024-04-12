@@ -37,7 +37,7 @@ export const Main: FunctionComponent<Props> = ({children}) => {
     fetchData();
   }, []);
   return (
-    <main className='max-w-[860px] px-6 py-8'>
+    <main className='max-w-[860px] mx-auto px-6 py-8'>
       <h2 className="text-4xl mb-8">{children}</h2>
       <Table todos={todos} />
     </main>
