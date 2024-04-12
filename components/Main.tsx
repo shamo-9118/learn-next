@@ -1,3 +1,4 @@
+import { Table } from '@/components/Table'
 import React, { useState, useEffect } from 'react';
 
 import type { FunctionComponent } from 'react';
@@ -36,15 +37,9 @@ export const Main: FunctionComponent<Props> = ({children}) => {
     fetchData();
   }, []);
   return (
-    <main className='h-[90vh] max-w-[860px] px-6 pt-8'>
-      <h2 className="text-4xl mb-8">{ children }</h2>
-      <ul>
-        {
-          todos.map((todo) => {
-            return <li key={todo.id}>{todo.title}</li>
-          })
-        }
-      </ul>
+    <main className='max-w-[860px] px-6 py-8'>
+      <h2 className="text-4xl mb-8">{children}</h2>
+      <Table todos={todos} />
     </main>
   )
 }
