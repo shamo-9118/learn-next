@@ -1,20 +1,49 @@
-import { fetchDataJsonPlaceholder } from "@/hooks/fetchDataJsonPlaceholder";
+import useFetchDataJsonPlaceholder from "@/hooks/useFetchDataJsonPlaceholder";
+import React, { useState, useEffect } from 'react';
+
 import type { FunctionComponent } from 'react';
 type Props = {
   children: string;
 };
 
+type Todo = {
+  completed: boolean;
+  id: number;
+  title: string;
+  userId: number;
+};
+
 export const Main: FunctionComponent<Props> = ({children}) => {
-  const contentList = ['aaa','aaa','aaa','aaa','aaa','aaa','aaa','aaa','aaa','aaa','aaa',]
+
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+        if (!response.ok) {
+          throw new Error(`ネットワークエラー:  ${response.status}`);
+        }
+        const data: Todo[] = await response.json();
+        setTodos(data);
+      } catch (error) {
+        console.error('データを取得できませんでした:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <main className='h-[90vh] max-w-[860px] px-6 pt-8'>
-      <p>{ children }</p>
-      <button className="border-[#20232a] rounded-[12px] border-[3px] py-2 px-4 hover:bg-[#20232a] hover:text-white font-medium duration-200" onClick={fetchDataJsonPlaceholder}>データ取得</button>
+      <h2 className="text-4xl mb-8">{ children }</h2>
       <ul>
         {
-          contentList.map((content, index) => (
-            <li key={index}>{content}</li>
-          ))
+          todos.map((todo) => {
+            return <li key={todo.id}>{todo.title}</li>
+          })
         }
       </ul>
     </main>
