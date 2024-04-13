@@ -49,7 +49,6 @@ export const Table = () => {
       <tbody className="border-2">
           {
             todos.map((todo) => {
-              console.log(todos)
               return (
                 <tr className="border-2 p-3" key={todo.id}>
                   <td className="border-2 p-3 text-center">{todo.userId}</td>
