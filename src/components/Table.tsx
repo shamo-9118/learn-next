@@ -1,3 +1,6 @@
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link'
+
 type Todo = {
   completed: boolean;
   id: number;
@@ -9,7 +12,28 @@ type Props = {
   todos: Todo[]
 }
 
-export const Table: React.FC<Props> = ({todos}) => {
+export const Table = () => {
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+        if (!response.ok) {
+          throw new Error(`ネットワークエラー:  ${response.status}`);
+        }
+        const data: Todo[] = await response.json();
+        setTodos(data);
+      } catch (error) {
+        console.error('データを取得できませんでした:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
   const todoDataKeyList = todos.length > 0 ? Object.keys(todos[0]) : [];
   return (
     <table className="border-2">
@@ -30,7 +54,11 @@ export const Table: React.FC<Props> = ({todos}) => {
                 <tr className="border-2 p-3" key={todo.id}>
                   <td className="border-2 p-3 text-center">{todo.userId}</td>
                   <td className="border-2 p-3 text-center">{todo.id}</td>
-                  <td className="border-2 p-3">{todo.title}</td>
+                  <td className="border-2 p-3">
+                    <Link href={`/blog/${encodeURIComponent(todo.id)}`}>
+                      {todo.title}
+                    </Link>
+                  </td>
                   <td className="border-2 p-3 text-center">
                     <input type="checkbox" checked={todo.completed} />
                   </td>
