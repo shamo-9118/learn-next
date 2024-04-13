@@ -8,10 +8,6 @@ type Todo = {
   userId: number;
 };
 
-type Props = {
-  todos: Todo[]
-}
-
 export const Table = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
