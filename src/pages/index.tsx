@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <Layout heading={'Index'}>
-        <Table></Table>
+        <Table />
       </Layout>
     </>
   );
