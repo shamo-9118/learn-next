@@ -1,8 +1,11 @@
 import { Layout } from '@/components/Layout'
+import { Table } from '@/components/Table'
 
 function About() {
   return(
-    <Layout>about</Layout>
+    <Layout heading={'About'}>
+      <Table/>
+    </Layout>
 );
 }
 

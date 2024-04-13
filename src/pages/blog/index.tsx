@@ -1,8 +1,11 @@
-import {  Layout } from '@/components/Layout'
+import { Layout } from '@/components/Layout'
+import { Table } from '@/components/Table'
 
 function Blog() {
   return (
-    <Layout>blog</Layout>
+    <Layout heading={'Blog'}>
+      <Table />
+    </Layout>
   )
 }
 
