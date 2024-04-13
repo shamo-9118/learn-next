@@ -1,9 +1,10 @@
 import { Table } from '@/components/Table'
 import React, { useState, useEffect } from 'react';
 
-import type { FunctionComponent } from 'react';
+import type { FunctionComponent, ReactNode, ReactElement, ReactDOM } from 'react';
 type Props = {
-  children: string;
+  heading : string;
+  children: ReactNode;
 };
 
 type Todo = {
@@ -13,33 +14,12 @@ type Todo = {
   userId: number;
 };
 
-export const Main: FunctionComponent<Props> = ({children}) => {
+export const Main = (props: Props) => {
 
-  const [todos, setTodos] = useState<Todo[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/todos');
-        if (!response.ok) {
-          throw new Error(`ネットワークエラー:  ${response.status}`);
-        }
-        const data: Todo[] = await response.json();
-        setTodos(data);
-      } catch (error) {
-        console.error('データを取得できませんでした:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
   return (
     <main className='max-w-[860px] w-full mx-auto px-6 py-8'>
-      <h2 className="text-4xl mb-8">{children}</h2>
-      <Table todos={todos} />
+      <h2 className="text-4xl mb-8">{props.heading}</h2>
+      {props.children}
     </main>
   )
 }
