@@ -5,17 +5,18 @@ import { Main } from '@/components/Main'
 import type { FunctionComponent } from 'react';
 
 type Props = {
-  children: string;
+  heading: string;
+  children: React.ReactNode;
 };
 
-export const Layout: FunctionComponent<Props> = ({children}) => {
+export const Layout: FunctionComponent<Props> = (props) => {
   return (
     <div className='flex flex-col'>
-      <Header></Header>
-      <Main>
-        {children}
+      <Header/>
+      <Main heading={props.heading}>
+        {props.children}
       </Main>
-      <Footer></Footer>
+      <Footer/>
     </div>
   )
 }
