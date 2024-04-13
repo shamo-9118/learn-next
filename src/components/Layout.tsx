@@ -12,11 +12,11 @@ type Props = {
 export const Layout: FunctionComponent<Props> = (props) => {
   return (
     <div className='flex flex-col'>
-      <Header/>
+      <Header />
       <Main heading={props.heading}>
         {props.children}
       </Main>
-      <Footer/>
+      <Footer />
     </div>
   )
 }
