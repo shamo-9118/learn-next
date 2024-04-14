@@ -8,14 +8,18 @@ type Todo = {
   userId: number;
 };
 
-export const Table = () => {
+type Props = {
+  category: 'string';
+}
+
+export const Table = (props: Props) => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+        const response = await fetch(`https://jsonplaceholder.typicode.com/${props.category}`);
         if (!response.ok) {
           throw new Error(`ネットワークエラー:  ${response.status}`);
         }
