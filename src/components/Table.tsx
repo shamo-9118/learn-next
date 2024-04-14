@@ -55,7 +55,7 @@ export const Table = () => {
                     </Link>
                   </td>
                   <td className="border-2 p-3 text-center">
-                    <input type="checkbox" checked={todo.completed} />
+                    <input type="checkbox" defaultChecked={todo.completed} />
                   </td>
                 </tr>
               )
