@@ -4,7 +4,7 @@ import {  Table } from '@/components/Table'
 function Contact() {
   return (
     <Layout heading={'Contact'}>
-      <Table />
+      hello
     </Layout>
   );
 }

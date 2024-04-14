@@ -9,7 +9,7 @@ type Todo = {
 };
 
 type Props = {
-  category: 'string';
+  category: string;
 }
 
 export const Table = (props: Props) => {
