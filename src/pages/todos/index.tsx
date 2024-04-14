@@ -3,8 +3,8 @@ import { Table } from '@/components/Table'
 
 function About() {
   return(
-    <Layout heading={'About'}>
-      <Table />
+    <Layout heading={'Todo List'}>
+      <Table category={'todos'}/>
     </Layout>
 );
 }
