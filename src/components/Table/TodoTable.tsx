@@ -50,7 +50,7 @@ export const TodoTable = () => {
                   <td className="border-2 p-3 text-center">{todo.userId}</td>
                   <td className="border-2 p-3 text-center">{todo.id}</td>
                   <td className="border-2 p-3">
-                    <Link href={`/blog/${encodeURIComponent(todo.id)}`}>
+                    <Link href={`/todos/${encodeURIComponent(todo.id)}`}>
                       {todo.title}
                     </Link>
                   </td>
