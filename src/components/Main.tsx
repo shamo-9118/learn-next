@@ -1,4 +1,4 @@
-import { Table } from '@/components/Table'
+import { Table } from '@/components/Table/TodoTable'
 import React, { useState, useEffect } from 'react';
 
 import type { FunctionComponent, ReactNode, ReactElement, ReactDOM } from 'react';

@@ -8,18 +8,14 @@ type Todo = {
   userId: number;
 };
 
-type Props = {
-  category: string;
-}
-
-export const Table = (props: Props) => {
+export const TodoTable = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`https://jsonplaceholder.typicode.com/${props.category}`);
+        const response = await fetch(`https://jsonplaceholder.typicode.com/todos`);
         if (!response.ok) {
           throw new Error(`ネットワークエラー:  ${response.status}`);
         }
@@ -36,7 +32,7 @@ export const Table = (props: Props) => {
   }, []);
   const todoDataKeyList = todos.length > 0 ? Object.keys(todos[0]) : [];
   return (
-    <table className="border-2">
+    <table className="border-2 w-full">
       <thead className="border-2 text-center">
         <tr className="bg-[#bfdcff] font-medium">
           { 
