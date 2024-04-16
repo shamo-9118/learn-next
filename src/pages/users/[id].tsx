@@ -1,5 +1,5 @@
 import { Layout } from '../../components/Layout';
-import { UserArticle } from '../../components/UserArticle';
+import { UserArticle } from '../../components/Article/UserArticle';
 import { useRouter } from 'next/router';
 
 export default function UserPage() {

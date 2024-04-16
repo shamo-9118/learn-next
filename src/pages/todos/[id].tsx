@@ -1,5 +1,5 @@
 import { Layout } from '@/components/Layout';
-import { Article } from '@/components/Article';
+import { Article } from '@/components/Article/Article';
 import { useRouter } from 'next/router'
 
 export default function TodoPage() {
