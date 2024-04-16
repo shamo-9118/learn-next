@@ -1,10 +1,10 @@
 import { Layout } from '@/components/Layout'
-import { Table } from '@/components/Table'
+import { TodoTable } from '@/components/Table/TodoTable'
 
 function About() {
   return(
     <Layout heading={'Todo List'}>
-      <Table category={'todos'}/>
+      <TodoTable />
     </Layout>
 );
 }

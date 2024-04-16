@@ -1,5 +1,5 @@
 import {  Layout } from '@/components/Layout'
-import {  Table } from '@/components/Table'
+import {  Table } from '@/components/Table/TodoTable'
 
 function Contact() {
   return (

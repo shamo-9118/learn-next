@@ -1,10 +1,10 @@
 import { Layout } from '@/components/Layout'
-import { Table } from '@/components/Table'
+import { UsersTable } from '@/components/Table/UsersTable'
 
 function Blog() {
   return (
     <Layout heading={'User List'}>
-      <Table category={'users'} />
+      <UsersTable />
     </Layout>
   )
 }
