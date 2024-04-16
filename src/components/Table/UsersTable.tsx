@@ -1,6 +1,7 @@
 import { table } from "console";
 import { createPrivateKey } from "crypto";
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+import Link from 'next/link';
 
 type User =   {
   "id": number,
@@ -92,7 +93,9 @@ return (
           return (
             <tr className="border-2 p-3" key={user.id}>
               <td className="border-2 p-3 text-center">{user.id}</td>
-              <td className="border-2 p-3 text-center">{user.name}</td>
+              <td className="border-2 p-3 text-center">
+                <Link href={`users/${encodeURIComponent(user.id)}`}>{user.name}</Link>
+              </td>
               <td className="border-2 p-3 text-center">{user.username}</td>
               <td className="border-2 p-3 text-center">{user.email}</td>
               <td className="border-2 p-3 text-center">{user.phone}</td>
