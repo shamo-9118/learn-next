@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link'
+import { Irish_Grover } from 'next/font/google';
 
 type Todo = {
   completed: boolean;
@@ -11,6 +12,7 @@ type Todo = {
 export const TodoTable = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [isSelectedUserId, setIsSelectedUserId] = useState<number>(0);
+  const [selectedStatus, setSelectedStatus] = useState<string>('notSelected');
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -41,6 +43,10 @@ export const TodoTable = () => {
     setIsSelectedUserId(todoUserId)
   }
 
+  const handleSelectedStatus = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedStatus(event.target.value)
+  }
+
   return (
     <>
     <div className='space-y-3 mb-6 bg-neutral-100 py-4 px-5 rounded-md'>
@@ -68,10 +74,10 @@ export const TodoTable = () => {
       <div>
         <label className='flex flex-col max-w-[300px]' htmlFor="">
           <span className='text-sm'>ステータス</span>
-          <select className='border-[2px] border-neutral-300 rounded-md p-1' name="" id="">
-            <option className='' value="" selected>選択してください</option>
-            <option value="">完了</option>
-            <option value="">未完了</option>
+          <select value={selectedStatus} onChange={handleSelectedStatus} className='border-[2px] border-neutral-300 rounded-md p-1' name="" id="">
+            <option className='notSelected' value="" selected>選択してください</option>
+            <option value="completed">完了</option>
+            <option value="incomplete">未完了</option>
           </select>
         </label>
       </div>
@@ -89,8 +95,13 @@ export const TodoTable = () => {
         <tbody className='border-2'>
             {
               todos.map((todo) => {
-                if(isSelectedUserId !== 0) {
+                if (isSelectedUserId !== 0) {
                   if (todo.userId !== isSelectedUserId) return
+                }
+
+                if (selectedStatus !== 'notSelected') {
+                  if (selectedStatus === 'completed' && !todo.completed) return
+                  if (selectedStatus === 'incomplete' && todo.completed) return
                 }
                 return (
                   <tr className='border-2 p-3' key={todo.id}>
