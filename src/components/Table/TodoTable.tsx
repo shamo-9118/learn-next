@@ -54,7 +54,15 @@ export const TodoTable = () => {
       <div className='flex gap-4 mb-4'>
         {
           todoUserIdList.map((todoUserId)=>{
-            return <button onClick={() => getSelectedUserId(todoUserId)} className='w-full bg-sky-600 text-white rounded-md' key={todoUserId}>{todoUserId}</button>;
+            return (
+              <button
+                onClick={() => getSelectedUserId(todoUserId)}
+                className='w-full bg-sky-600 text-white rounded-md'
+                key={todoUserId}
+              >
+                {todoUserId}
+              </button>
+            )
           })
         }
       </div>
