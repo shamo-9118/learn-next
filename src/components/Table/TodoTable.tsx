@@ -43,11 +43,10 @@ export const TodoTable = () => {
 
   return (
     <>
-    <div className='space-y-2 mb-6 bg-neutral-100 py-4 px-5 rounded-md'>
-      <h3 className='font-medium text-xl'>検索パネル</h3>
+    <div className='space-y-3 mb-6 bg-neutral-100 py-4 px-5 rounded-md'>
       <div>
-        <label className='flex gap-3 items-center'>
-          検索ボックス
+        <label className='flex flex-col max-w-[300px]'>
+          <span className='text-sm'>検索ボックス</span>
           <input className='border-[2px] border-neutral-300 rounded-md px-1' type="text" />
         </label>
       </div>
@@ -65,6 +64,16 @@ export const TodoTable = () => {
             )
           })
         }
+      </div>
+      <div>
+        <label className='flex flex-col max-w-[300px]' htmlFor="">
+          <span className='text-sm'>ステータス</span>
+          <select className='border-[2px] border-neutral-300 rounded-md p-1' name="" id="">
+            <option className='' value="" selected>選択してください</option>
+            <option value="">完了</option>
+            <option value="">未完了</option>
+          </select>
+        </label>
       </div>
     </div>
       <table className='border-2 w-full'>
