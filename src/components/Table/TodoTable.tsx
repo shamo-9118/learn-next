@@ -43,6 +43,14 @@ export const TodoTable = () => {
 
   return (
     <>
+    <div className='space-y-2 mb-6 bg-neutral-100 py-4 px-5 rounded-md'>
+      <h3 className='font-medium text-xl'>検索パネル</h3>
+      <div>
+        <label className='flex gap-3 items-center'>
+          検索ボックス
+          <input className='border-[2px] border-neutral-300 rounded-md px-1' type="text" />
+        </label>
+      </div>
       <div className='flex gap-4 mb-4'>
         {
           todoUserIdList.map((todoUserId)=>{
@@ -50,6 +58,7 @@ export const TodoTable = () => {
           })
         }
       </div>
+    </div>
       <table className='border-2 w-full'>
         <thead className='border-2 text-center'>
           <tr className='bg-[#bfdcff] font-medium'>
