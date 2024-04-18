@@ -63,7 +63,7 @@ export const TodoTable = () => {
             return (
               <button
                 onClick={() => getSelectedUserId(todoUserId)}
-                className={`w-full bg-sky-600 text-white rounded-md duration-300${todoUserId === isSelectedUserId ? ' opacity-25' : null}`}
+                className={`w-full bg-sky-600 text-white rounded-md duration-200 ${todoUserId === isSelectedUserId ? ' opacity-25' : 'opacity-100'}`}
                 key={todoUserId}
               >
                 {todoUserId}
