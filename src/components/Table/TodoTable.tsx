@@ -74,7 +74,7 @@ export const TodoTable = () => {
       </div>
       <div>
         <label className='flex flex-col max-w-[300px]' htmlFor="">
-          <span className='text-sm'>ステータス</span>
+          <span className='text-sm tracking-[-0.08em]'>ステータス</span>
           <select value={selectedStatus} onChange={handleSelectedStatus} className='border-[2px] border-neutral-300 rounded-md p-1' name="" id="">
             <option className='notSelected' value="" selected>選択してください</option>
             <option value="completed">完了</option>
