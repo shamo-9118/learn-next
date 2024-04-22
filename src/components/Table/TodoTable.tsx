@@ -16,7 +16,6 @@ export const TodoTable = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const text = 'laboriosam mollitia et enim quasi adipisci quia provident illum'
-  console.log(typeof text.indexOf('au'))
 
   useEffect(() => {
     const fetchData = async () => {
