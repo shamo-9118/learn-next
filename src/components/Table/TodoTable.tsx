@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link'
-import { Irish_Grover } from 'next/font/google';
 
 type Todo = {
   completed: boolean;
@@ -13,7 +12,11 @@ export const TodoTable = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [isSelectedUserId, setIsSelectedUserId] = useState<number>(0);
   const [selectedStatus, setSelectedStatus] = useState<string>('notSelected');
+  const [searchConditionCharacter, setSearchConditionCharacter] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const text = 'laboriosam mollitia et enim quasi adipisci quia provident illum'
+  console.log(typeof text.indexOf('au'))
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,13 +51,18 @@ export const TodoTable = () => {
     setSelectedStatus(event.target.value)
   }
 
+  const handleSearchConditionCharacter = (event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setSearchConditionCharacter(event.target.value)
+  }
+
   return (
     <>
     <div className='space-y-3 mb-6 bg-neutral-100 py-4 px-5 rounded-md'>
       <div>
         <label className='flex flex-col max-w-[300px]'>
           <span className='text-sm'>検索ボックス</span>
-          <input className='border-[2px] border-neutral-300 rounded-md px-1' type="text" />
+          <input className='border-[2px] border-neutral-300 rounded-md px-1' type="text" value={searchConditionCharacter} onChange={handleSearchConditionCharacter}/>
         </label>
       </div>
       <div className='flex gap-4 mb-4'>
@@ -104,6 +112,12 @@ export const TodoTable = () => {
                   if (selectedStatus === 'completed' && !todo.completed) return
                   if (selectedStatus === 'incomplete' && todo.completed) return
                 }
+
+                if (searchConditionCharacter.length > 0) {
+                  const isExistedSearchTargetCharacter = todo.title.indexOf(searchConditionCharacter) === -1 ? false : true;
+                  if(!isExistedSearchTargetCharacter) return;
+                }
+                
                 return (
                   <tr className='border-2 p-3' key={todo.id}>
                     <td className='border-2 p-3 text-center'>{todo.userId}</td>
