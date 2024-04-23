@@ -38,7 +38,7 @@ export const TodoTable = () => {
   }, []);
 
   const todoDataKeyList = todos.length > 0 ? Object.keys(todos[0]) : [];
-  const todoUserIdList = Array.from(new Set(todos.map((todo)=> todo.userId)))
+  const todoUserIdList = Array.from(new Set(todos.map((todo)=> todo.userId))).sort()
   const getSelectedUserId = (todoUserId: number) => {
     if (todoUserId === isSelectedUserId) {
       setIsSelectedUserId(0)
