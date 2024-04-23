@@ -13,6 +13,7 @@ export const TodoTable = () => {
   const [isSelectedUserId, setIsSelectedUserId] = useState<number>(0);
   const [selectedStatus, setSelectedStatus] = useState<string>('notSelected');
   const [searchConditionCharacter, setSearchConditionCharacter] = useState<string>('');
+  const [selectedArrangementType, setSelectedArragementType] =useState<string>('ascending_order')
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const text = 'laboriosam mollitia et enim quasi adipisci quia provident illum'
@@ -55,6 +56,23 @@ export const TodoTable = () => {
     setSearchConditionCharacter(event.target.value)
   }
 
+  const handleSelectedArrangementType = (event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setSelectedArragementType(event.target.value)
+  }
+
+  useEffect(()=> {
+    if (selectedArrangementType === 'ascending_order') {
+      const newTodos = [...todos].sort((a,b)=> a.id - b.id);
+      setTodos(newTodos)
+    }
+  
+    if (selectedArrangementType === 'descending_order') {
+      const newTodos = [...todos].sort((a,b)=> b.id - a.id);
+      setTodos(newTodos)
+    }
+  },[selectedArrangementType])
+
   return (
     <>
     <div className='space-y-3 mb-6 bg-neutral-100 py-4 px-5 rounded-md'>
@@ -86,6 +104,15 @@ export const TodoTable = () => {
             <option className='notSelected' value="" selected>選択してください</option>
             <option value="completed">完了</option>
             <option value="incomplete">未完了</option>
+          </select>
+        </label>
+      </div>
+      <div>
+        <label className='flex flex-col max-w-[300px]' htmlFor="">
+          <span className='text-sm tracking-[-0.08em]'>並び替え</span>
+          <select value={selectedArrangementType} onChange={handleSelectedArrangementType} className='border-[2px] border-neutral-300 rounded-md p-1' name="" id="">
+            <option value='ascending_order' selected>昇順</option>
+            <option value='descending_order'>降順</option>
           </select>
         </label>
       </div>
