@@ -1,12 +1,12 @@
-import { Layout } from '@/components/Layout'
-import { TodoTable } from '@/components/Table/TodoTable'
+import { Layout } from '@/components/Layout';
+import { TodoTable } from '@/components/Table/TodoTable';
 
 function About() {
-  return(
+  return (
     <Layout heading={'Todo List'}>
       <TodoTable />
     </Layout>
-);
+  );
 }
 
 export default About;

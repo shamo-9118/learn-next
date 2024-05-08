@@ -7,8 +7,8 @@ export default function UserPage() {
   const userId = router.query.id;
 
   return (
-  <Layout heading={'User詳細'}>
-    <UserArticle userId={userId}></UserArticle>
-  </Layout>
-)
+    <Layout heading={'User詳細'}>
+      <UserArticle userId={userId}></UserArticle>
+    </Layout>
+  );
 }
