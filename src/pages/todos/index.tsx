@@ -1,10 +1,10 @@
 import { Layout } from '@/components/Layout';
-import { TodoTable } from '@/components/Table/TodoTable';
+import { TodoWrapper } from '@/components/TodoWrapper';
 
 function About() {
   return (
     <Layout heading={'Todo List'}>
-      <TodoTable />
+      <TodoWrapper />
     </Layout>
   );
 }
