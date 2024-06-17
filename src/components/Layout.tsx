@@ -1,13 +1,9 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Main } from '@/components/Main';
+import { Props } from '@/types/props';
 
 import type { FunctionComponent } from 'react';
-
-type Props = {
-  heading: string;
-  children: React.ReactNode;
-};
 
 export const Layout: FunctionComponent<Props> = (props) => {
   return (

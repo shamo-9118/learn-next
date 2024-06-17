@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
-type Todo = {
-  completed: boolean;
-  id: number;
-  title: string;
-  userId: number;
-};
+import type { Todo } from '@/types/todo';
 
 export const SearchPanel = () => {
   const [todos, setTodos] = useState<Todo[]>([]);

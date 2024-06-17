@@ -1,9 +1,4 @@
-import type { ReactNode } from 'react';
-
-type Props = {
-  heading: string;
-  children: ReactNode;
-};
+import type { Props } from '@/types/props';
 
 export const Main = (props: Props) => {
   return (
