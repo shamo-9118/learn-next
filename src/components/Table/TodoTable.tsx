@@ -10,13 +10,13 @@ type Todo = {
 
 export const TodoTable = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [isSelectedUserId, setIsSelectedUserId] = useState<number>(0);
-  const [selectedStatus, setSelectedStatus] = useState<string>('notSelected');
+  const [isSelectedUserId, setIsSelectedUserId] = useState(0);
+  const [selectedStatus, setSelectedStatus] = useState('notSelected');
   const [searchConditionCharacter, setSearchConditionCharacter] =
     useState<string>('');
   const [selectedArrangementType, setSelectedArragementType] =
     useState<string>('ascending_order');
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const text =
     'laboriosam mollitia et enim quasi adipisci quia provident illum';

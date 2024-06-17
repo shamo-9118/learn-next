@@ -13,7 +13,7 @@ type Props = {
 
 export const Article = (props: Props) => {
   const [todoData, setTodoData] = useState<Todo>();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+
   useEffect(() => {
     const fetchTaskData = async () => {
       try {
@@ -24,12 +24,9 @@ export const Article = (props: Props) => {
           throw new Error(`ネットワークエラー:  ${response.status}`);
         }
         const data: Todo = await response.json();
-        console.log(data);
         setTodoData(data);
       } catch (error) {
         console.error('データを取得できませんでした:', error);
-      } finally {
-        setIsLoading(false);
       }
     };
     fetchTaskData();
