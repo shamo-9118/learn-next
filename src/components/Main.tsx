@@ -1,6 +1,5 @@
-import { TodoTable } from '@/components/Table/TodoTable';
-
 import type { ReactNode } from 'react';
+
 type Props = {
   heading: string;
   children: ReactNode;
