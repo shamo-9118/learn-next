@@ -1,13 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { theadDescription } from '@/components/Table/Todo/styleCalsses';
+import { useFetchData } from '@/hooks/usefetchData';
 
-type Todo = {
-  completed: boolean;
-  id: number;
-  title: string;
-  userId: number;
-};
+import type { Todo } from '@/types/todo';
 
 export const TodoTable = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -15,24 +11,11 @@ export const TodoTable = () => {
   const [selectedStatus, setSelectedStatus] = useState('notSelected');
   const [searchConditionCharacter, setSearchConditionCharacter] = useState('');
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `https://jsonplaceholder.typicode.com/todos`,
-        );
-        if (!response.ok) {
-          throw new Error(`ネットワークエラー:  ${response.status}`);
-        }
-        const data: Todo[] = await response.json();
-        setTodos(data);
-      } catch (error) {
-        console.error('データを取得できませんでした:', error);
-      }
-    };
+  const fetchedData = useFetchData('todos');
 
-    fetchData();
-  }, []);
+  useEffect(() => {
+    setTodos(fetchedData);
+  }, [fetchedData]);
 
   return (
     <table className='border-2 w-full'>
