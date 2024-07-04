@@ -28,7 +28,6 @@ export const SearchPanel = () => {
     fetchData();
   }, []);
 
-  const todoDataKeyList = todos.length > 0 ? Object.keys(todos[0]) : [];
   const todoUserIdList = Array.from(
     new Set(todos.map((todo) => todo.userId)),
   ).sort();
