@@ -1,6 +1,3 @@
-import React, { useState, useEffect } from 'react';
-
-import type { Todo } from '@/types/todo';
 import type { SearchPanelProps } from '@/types/searchPanelProps';
 import type { SelectedArrangementType } from '@/types/selectedArrangementType';
 

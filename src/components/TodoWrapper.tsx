@@ -5,7 +5,6 @@ import { TodoTable } from './Table/Todo/TodoTable';
 import { useFetchData } from '@/hooks/usefetchData';
 
 import type { Todo } from '@/types/todo';
-import type { SelectedStatus } from '@/types/selectedStatus';
 import type { SelectedArrangementType } from '@/types/selectedArrangementType';
 
 export const TodoWrapper = () => {
