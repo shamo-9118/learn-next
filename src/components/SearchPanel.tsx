@@ -23,10 +23,8 @@ type SearchItems = {
 };
 
 export const SearchPanel: React.FC<Props> = (props) => {
-  const [selectedUserId, setSelectedUserId] = useState(0);
-
   const getSelectedUserId = (todoUserId: number) => {
-    if (todoUserId === selectedUserId) {
+    if (todoUserId === props.searchItems.selectedUserId) {
       props.searchItems.setSelectedUserId(0);
       return;
     }
@@ -72,7 +70,9 @@ export const SearchPanel: React.FC<Props> = (props) => {
             <button
               onClick={() => getSelectedUserId(todoUserId)}
               className={`w-full bg-sky-600 text-white rounded-md duration-200 ${
-                todoUserId === selectedUserId ? ' opacity-25' : 'opacity-100'
+                todoUserId === props.searchItems.selectedUserId
+                  ? ' opacity-25'
+                  : 'opacity-100'
               }`}
               key={todoUserId}
             >

@@ -34,6 +34,10 @@ export const TodoWrapper = () => {
       );
     }
 
+    if (selectedUserId === 0) {
+      filteredTodos = [...todos];
+    }
+
     if (selectedStatus !== 'notSelected') {
       filteredTodos = filteredTodos.filter((todo) =>
         selectedStatus === 'completed' ? todo.completed : !todo.completed,
