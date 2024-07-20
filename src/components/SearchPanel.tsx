@@ -1,28 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 import type { Todo } from '@/types/todo';
-import type { SelectedStatus } from '@/types/selectedStatus';
+import type { SearchPanelProps } from '@/types/searchPanelProps';
 import type { SelectedArrangementType } from '@/types/selectedArrangementType';
 
-type Props = {
-  todoUserIdList: number[];
-  searchItems: SearchItems;
-};
-
-type SearchItems = {
-  selectedUserId: number;
-  setSelectedUserId: React.Dispatch<React.SetStateAction<number>>;
-  selectedStatus: string;
-  setSelectedStatus: React.Dispatch<React.SetStateAction<string>>;
-  searchConditionCharacter: string;
-  setSearchConditionCharacter: React.Dispatch<React.SetStateAction<string>>;
-  selectedArrangementType: SelectedArrangementType;
-  setSelectedArragementType: React.Dispatch<
-    React.SetStateAction<SelectedArrangementType>
-  >;
-};
-
-export const SearchPanel: React.FC<Props> = (props) => {
+export const SearchPanel: React.FC<SearchPanelProps> = (props) => {
   const getSelectedUserId = (todoUserId: number) => {
     if (todoUserId === props.searchItems.selectedUserId) {
       props.searchItems.setSelectedUserId(0);
