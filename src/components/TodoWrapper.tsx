@@ -29,9 +29,9 @@ export const TodoWrapper = () => {
     let filteredTodos = [...todos];
 
     if (selectedUserId != 0) {
-      filteredTodos.filter((todo) => {
-        todo.id === selectedUserId;
-      });
+      filteredTodos = filteredTodos.filter(
+        (todo) => todo.userId === selectedUserId,
+      );
     }
 
     if (selectedStatus !== 'notSelected') {

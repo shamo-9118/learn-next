@@ -27,11 +27,11 @@ export const SearchPanel: React.FC<Props> = (props) => {
 
   const getSelectedUserId = (todoUserId: number) => {
     if (todoUserId === selectedUserId) {
-      setSelectedUserId(0);
+      props.searchItems.setSelectedUserId(0);
       return;
     }
 
-    setSelectedUserId(todoUserId);
+    props.searchItems.setSelectedUserId(todoUserId);
   };
 
   const handleSelectedStatus = (
