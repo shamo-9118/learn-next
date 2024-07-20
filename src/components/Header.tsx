@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export const Header = () => {
-  const headerNavList = ['todos', 'users', 'contact'];
+  const headerNavList = ['todos', 'users', 'note'];
   return (
     <header className='py-6 px-5 bg-[#20232a] text-white'>
       <div className='flex justify-between max-w-[860px] mx-auto'>
