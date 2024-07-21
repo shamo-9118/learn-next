@@ -1,13 +1,8 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import type { NoteEditorProps } from '@/types/note/noteEditorProps';
 
-interface Props {
-  content: string;
-  isPreviewMode: boolean;
-  onContentChange: (content: string) => Promise<void>;
-}
-
-const NoteEditor: React.FC<Props> = ({
+const NoteEditor: React.FC<NoteEditorProps> = ({
   content,
   isPreviewMode,
   onContentChange,

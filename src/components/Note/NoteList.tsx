@@ -1,16 +1,9 @@
-import { Note } from '@/types/note/note';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
+import { NoteListProps } from '@/types/note/noteListProps';
 
-type Props = {
-  notes: Note[];
-  selectNoteId: number | null;
-  onSelect: (note: Note) => void;
-  handleChangeTitle: (title: string) => void;
-};
-
-const NoteList: React.FC<Props> = ({
+const NoteList: React.FC<NoteListProps> = ({
   notes,
   selectNoteId,
   onSelect,
