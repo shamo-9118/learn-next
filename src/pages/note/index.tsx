@@ -10,30 +10,53 @@ const Note = () => {
 
   useEffect(() => {
     fetchNotes();
+
+    if (!supabase) return;
+    const mySubscription = supabase
+      .channel('note')
+      .on(
+        'postgres_changes',
+        { event: 'UPDATE', schema: 'public', table: 'note' },
+        fetchNotes,
+      )
+      .subscribe();
+
+    return () => {
+      supabase && supabase.removeChannel(mySubscription);
+    };
   }, []);
 
   const fetchNotes = async () => {
-    if (supabase) {
-      const { data, error } = await supabase
-        .from('notion-demo-app')
-        .select('*')
-        .order('id', { ascending: false });
-      if (!data) return;
-      setNotes(data);
-      if (error) console.error('Error fetching notes', error);
-    }
+    if (!supabase) return;
+    const { data, error } = await supabase
+      .from('notion-demo-app')
+      .select('*')
+      .order('id', { ascending: false });
+    if (!data) return;
+    setNotes(data);
+    if (error) console.error('Error fetching notes', error);
   };
 
   const handleNewNote = async () => {
-    if (supabase) {
-      const { data, error } = await supabase
-        .from('notion-demo-app')
-        .insert({ title: '新規ノート', content: '' });
-      if (error || data) {
-        console.error(error);
-        return;
-      }
+    if (!supabase) return;
+    const { data, error } = await supabase
+      .from('notion-demo-app')
+      .insert({ title: '新規ノート', content: '' });
+    if (error || data) {
+      console.error(error);
+      return;
     }
+
+    fetchNotes();
+  };
+
+  const handleContentChange = async (content: string) => {
+    if (!supabase) return;
+    const { error } = await supabase
+      .from('notion-demo-app')
+      .update({ content })
+      .eq('id', notes[0].id);
+    if (error) console.error('Error updating note', error);
 
     fetchNotes();
   };
@@ -61,7 +84,11 @@ const Note = () => {
             {previewMode ? 'Edit' : 'Preview'}
           </button>{' '}
         </div>
-        <NoteEditor content={notes[0]?.content} isPreviewMode={previewMode} />
+        <NoteEditor
+          content={notes[0]?.content}
+          isPreviewMode={previewMode}
+          onContentChange={handleContentChange}
+        />
       </div>
     </div>
   );
