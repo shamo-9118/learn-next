@@ -7,16 +7,17 @@ import NoteEditor from '@/components/Note/NoteEditor';
 const Note = () => {
   const [notes, setNotes] = useState<Note[]>([]);
   const [previewMode, setPreviewMode] = useState(false);
+  const [currentNoteId, setCurrentNoteId] = useState<number | null>(null);
 
   useEffect(() => {
     fetchNotes();
 
     if (!supabase) return;
     const mySubscription = supabase
-      .channel('note')
+      .channel('notion-demo-app')
       .on(
         'postgres_changes',
-        { event: 'UPDATE', schema: 'public', table: 'note' },
+        { event: 'UPDATE', schema: 'public', table: 'notion-demo-app' },
         fetchNotes,
       )
       .subscribe();
@@ -61,6 +62,18 @@ const Note = () => {
     fetchNotes();
   };
 
+  const handleChangeTitle = async (title: string) => {
+    if (!supabase) return;
+    const { error } = await supabase
+      .from('notion-demo-app')
+      .update({ title })
+      .eq('id', currentNoteId);
+
+    if (error) {
+      console.error('Error updating note', error);
+    }
+  };
+
   return (
     <div className='flex h-screen'>
       <div className='w-[300px] bg-gray-100 p-4'>
@@ -72,7 +85,12 @@ const Note = () => {
             新規作成
           </button>
         </div>
-        <NoteList notes={notes} />
+        <NoteList
+          notes={notes}
+          selectNoteId={currentNoteId}
+          onSelect={(note) => setCurrentNoteId(note.id)}
+          handleChangeTitle={handleChangeTitle}
+        />
       </div>
       <div className='flex-1 p-4'>
         <div className='mb-4 flex justify-between'>
@@ -85,7 +103,9 @@ const Note = () => {
           </button>{' '}
         </div>
         <NoteEditor
-          content={notes[0]?.content}
+          content={
+            notes.find((note) => note.id === currentNoteId)?.content || ''
+          } // 選択したノートを表示
           isPreviewMode={previewMode}
           onContentChange={handleContentChange}
         />
