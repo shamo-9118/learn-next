@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import supabase from '@/supabase/client';
 import NoteList from '@/components/Note/NoteList';
-import type { Note } from '@/types/note/note';
 import NoteEditor from '@/components/Note/NoteEditor';
+
+import type { Note } from '@/types/note/note';
 
 const Note = () => {
   const [notes, setNotes] = useState<Note[]>([]);
