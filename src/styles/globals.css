@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 .markdown h1 {
-  @apply text-4xl;
+  @apply text-4xl font-bold mb-4;
+}
+
+.markdown p {
+  @apply leading-7;
 }
