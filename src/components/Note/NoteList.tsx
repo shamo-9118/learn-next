@@ -1,6 +1,6 @@
 import { Note } from '@/types/note/note';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 
 type Props = {
@@ -54,7 +54,7 @@ const NoteList: React.FC<Props> = ({
               setSelectEditTitleNoteId(note.id);
             }}
           >
-            <FontAwesomeIcon icon={faCoffee} />
+            <FontAwesomeIcon icon={faPen} />
           </button>
         </li>
       ))}
