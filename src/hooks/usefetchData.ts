@@ -11,7 +11,7 @@ export const useFetchData = (path: string) => {
       );
 
       if (!response.ok) {
-        throw new Error(`ネットワークエラ:  ${response.status}`);
+        throw new Error(`ネットワークエラー:  ${response.status}`);
       }
 
       const data: Todo[] = await response.json();
