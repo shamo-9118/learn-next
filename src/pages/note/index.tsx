@@ -4,6 +4,7 @@ import NoteEditor from '@/components/Note/NoteEditor';
 import { useNotes } from '@/hooks/note/useNotes';
 
 import type { Note } from '@/types/note/note';
+import { NoteButton } from '@/components/Note/NoteButton';
 
 const Note = () => {
   const [previewMode, setPreviewMode] = useState(false);
@@ -21,12 +22,9 @@ const Note = () => {
     <div className='flex h-screen'>
       <div className='w-[300px] bg-gray-100 p-4'>
         <div className='mb-4'>
-          <button
-            className='w-full p-2 bg-blue-500 text-white font-bold rounded'
-            onClick={handleNewNote}
-          >
+          <NoteButton color='bg-blue-500' hundleClick={handleNewNote}>
             新規作成
-          </button>
+          </NoteButton>
         </div>
         <NoteList
           notes={notes}
@@ -38,12 +36,13 @@ const Note = () => {
       <div className='flex-1 p-4'>
         <div className='mb-4 flex justify-between'>
           <h2 className='text-xl font-bold'>Note Editor</h2>
-          <button
-            className='p-2 bg-green-500 text-white font-bold rounded'
-            onClick={() => setPreviewMode(!previewMode)}
+          <NoteButton
+            color='bg-green-500'
+            hundleClick={setPreviewMode}
+            mode={previewMode}
           >
             {previewMode ? 'Edit' : 'Preview'}
-          </button>{' '}
+          </NoteButton>
         </div>
         <NoteEditor
           content={
