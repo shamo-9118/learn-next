@@ -6,6 +6,7 @@ import {
   updateNoteContent,
   updateNoteTitle,
   setupSubscriptionNote,
+  deleteNote,
 } from '@/utils/note';
 import type { Note } from '@/types/note/note';
 

@@ -7,7 +7,7 @@ export const deleteNote = async (noteId: number) => {
   }
 
   const { error } = await supabase
-    .from('notion-app-demo')
+    .from('notion-demo-app')
     .delete()
     .eq('id', noteId);
 

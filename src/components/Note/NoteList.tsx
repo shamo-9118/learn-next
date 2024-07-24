@@ -1,7 +1,9 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPen } from '@fortawesome/free-solid-svg-icons';
+import { deleteNote } from '@/utils/note/deleteNote';
 import { useState } from 'react';
-import { NoteListProps } from '@/types/note/noteListProps';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+
+import type { NoteListProps } from '@/types/note/noteListProps';
 
 const NoteList: React.FC<NoteListProps> = ({
   notes,
@@ -27,8 +29,8 @@ const NoteList: React.FC<NoteListProps> = ({
             <input
               name='title'
               value={editingTitle}
-              onChange={(e) => setEditingTitle(e.target.value)}
               className='ml-2 p-1 border border-gray-300 rounded w-[200px]'
+              onChange={(e) => setEditingTitle(e.target.value)}
               onClick={(e) => e.stopPropagation()}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
@@ -40,15 +42,23 @@ const NoteList: React.FC<NoteListProps> = ({
           ) : (
             <span>{note.title}</span>
           )}
-          <button
-            className='ml-2 text-blue-500'
-            onClick={() => {
-              setEditingTitle(note.title);
-              setSelectEditTitleNoteId(note.id);
-            }}
-          >
-            <FontAwesomeIcon icon={faPen} />
-          </button>
+          <div className='flex gap-2'>
+            <button
+              className='ml-2 text-blue-500'
+              onClick={() => {
+                setEditingTitle(note.title);
+                setSelectEditTitleNoteId(note.id);
+              }}
+            >
+              <FontAwesomeIcon icon={faPen} />
+            </button>
+            <button
+              className='ml-2 text-blue-500'
+              onClick={() => deleteNote(note.id)}
+            >
+              <FontAwesomeIcon icon={faTrash} />
+            </button>
+          </div>
         </li>
       ))}
     </ul>
