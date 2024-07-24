@@ -5,6 +5,7 @@ import {
   createNote,
   updateNoteContent,
   updateNoteTitle,
+  setupSubscriptionNote,
 } from '@/utils/note';
 import type { Note } from '@/types/note/note';
 
@@ -37,17 +38,11 @@ export const useNotes = () => {
     fetchNotesCallback();
 
     if (!supabase) return;
-    const mySubscription = supabase
-      .channel('notion-demo-app')
-      .on(
-        'postgres_changes',
-        { event: 'UPDATE', schema: 'public', table: 'notion-demo-app' },
-        fetchNotesCallback,
-      )
-      .subscribe();
+
+    const connectedChanel = setupSubscriptionNote(supabase, fetchNotesCallback);
 
     return () => {
-      supabase && supabase.removeChannel(mySubscription);
+      supabase && supabase.removeChannel(connectedChanel);
     };
   }, [fetchNotesCallback]);
 
