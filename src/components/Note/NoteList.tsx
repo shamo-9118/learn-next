@@ -10,14 +10,13 @@ const NoteList: React.FC<NoteListProps> = ({
   selectNoteId,
   onSelect,
   handleChangeTitle,
+  handleDeleteAction,
 }) => {
   const [editingTitle, setEditingTitle] = useState('');
   const [selectEditTitleNoteId, setSelectEditTitleNoteId] = useState<
     number | null
   >(null);
 
-  console.log(notes);
-  const { handleDeleteAction } = useNotes();
   return (
     <ul className='space-y-2'>
       {notes.map((note) => (

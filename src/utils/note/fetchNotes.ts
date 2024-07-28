@@ -10,6 +10,7 @@ export const fetchNotes = async (): Promise<Note[]> => {
     .from('notion-demo-app')
     .select('*')
     .order('id', { ascending: false });
+  console.log(data);
 
   if (error) {
     console.error('Error fetching notes', error);
