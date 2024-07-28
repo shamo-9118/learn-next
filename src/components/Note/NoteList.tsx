@@ -31,7 +31,10 @@ const NoteList: React.FC<NoteListProps> = ({
               name='title'
               value={editingTitle}
               className='ml-2 p-1 border border-gray-300 rounded w-[200px]'
-              onChange={(e) => setEditingTitle(e.target.value)}
+              onChange={(e) => {
+                setEditingTitle(e.target.value);
+                handleChangeTitle(e.target.value);
+              }}
               onClick={(e) => e.stopPropagation()}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {

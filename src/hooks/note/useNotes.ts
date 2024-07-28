@@ -31,7 +31,9 @@ export const useNotes = () => {
   };
 
   const handleChangeTitle = async (title: string) => {
+    console.log('🚀 ~ handleChangeTitle ~ currentNoteId:', currentNoteId);
     if (!currentNoteId) return;
+
     await updateNoteTitle(currentNoteId, title);
   };
 
