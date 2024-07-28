@@ -1,4 +1,3 @@
-import { useNotes } from '@/hooks/note/useNotes';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
