@@ -35,6 +35,11 @@ export const useNotes = () => {
     await updateNoteTitle(currentNoteId, title);
   };
 
+  const handleDeleteAction = async (id: number) => {
+    await deleteNote(id);
+    fetchNotesCallback();
+  };
+
   useEffect(() => {
     fetchNotesCallback();
 
@@ -55,5 +60,6 @@ export const useNotes = () => {
     handleNewNote,
     handleContentChange,
     handleChangeTitle,
+    handleDeleteAction,
   };
 };

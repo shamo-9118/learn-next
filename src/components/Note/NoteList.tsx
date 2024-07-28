@@ -1,4 +1,4 @@
-import { deleteNote } from '@/utils/note/deleteNote';
+import { useNotes } from '@/hooks/note/useNotes';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -15,6 +15,9 @@ const NoteList: React.FC<NoteListProps> = ({
   const [selectEditTitleNoteId, setSelectEditTitleNoteId] = useState<
     number | null
   >(null);
+
+  console.log(notes);
+  const { handleDeleteAction } = useNotes();
   return (
     <ul className='space-y-2'>
       {notes.map((note) => (
@@ -54,7 +57,7 @@ const NoteList: React.FC<NoteListProps> = ({
             </button>
             <button
               className='ml-2 text-blue-500'
-              onClick={() => deleteNote(note.id)}
+              onClick={() => handleDeleteAction(note.id)}
             >
               <FontAwesomeIcon icon={faTrash} />
             </button>
