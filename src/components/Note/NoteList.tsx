@@ -51,7 +51,13 @@ const NoteList: React.FC<NoteListProps> = ({
               className='ml-2 text-blue-500'
               onClick={() => {
                 setEditingTitle(note.title);
-                setSelectEditTitleNoteId(note.id);
+                setSelectEditTitleNoteId((preveSelectedEditTitleNoteId) => {
+                  if (preveSelectedEditTitleNoteId === note.id) {
+                    return null;
+                  }
+
+                  return note.id;
+                });
               }}
             >
               <FontAwesomeIcon icon={faPen} />
