@@ -16,6 +16,7 @@ const Note = () => {
     handleNewNote,
     handleContentChange,
     handleChangeTitle,
+    handleDeleteAction,
   } = useNotes();
 
   return (
@@ -31,6 +32,7 @@ const Note = () => {
           selectNoteId={currentNoteId}
           onSelect={(note) => setCurrentNoteId(note.id)}
           handleChangeTitle={handleChangeTitle}
+          handleDeleteAction={handleDeleteAction}
         />
       </div>
       <div className='flex-1 p-4'>

@@ -4,4 +4,5 @@ export type NoteListProps = {
   selectNoteId: number | null;
   onSelect: (note: Note) => void;
   handleChangeTitle: (title: string) => void;
+  handleDeleteAction: (id: number) => Promise<void>;
 };
